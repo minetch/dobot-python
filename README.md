@@ -6,7 +6,7 @@
 
 [DOBOT Magician 教育用ロボットアーム](https://techshare.co.jp/product/dobot/magician/)
 
-## 参考サイト
+## - 参考サイト
 
 [[ロボ実験記録] Dobot magicianをpythonで動かす(公式API ver)](https://note.com/kan_hatakeyama/n/nede013f33866)
 

@@ -1,5 +1,7 @@
 # dobot_python
 3E実験用
+## 参考サイト
+[[ロボ実験記録] Dobot magicianをpythonで動かす(公式API ver)](https://note.com/kan_hatakeyama/n/nede013f33866)
 
 # DobotDemoForPython64
 

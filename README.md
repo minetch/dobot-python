@@ -1,5 +1,5 @@
 # dobot_python
-課題用
+3E実験用
 
 # DobotDemoForPython64
 

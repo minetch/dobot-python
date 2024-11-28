@@ -1,6 +1,7 @@
 from ctypes import *
 import time,  platform
 import os
+from enum import Enum
 
 def enum(**enums):
     return type("Enum", (), enums)
@@ -256,20 +257,20 @@ class PTPCommonParams(Structure):
         ("accelerationRatio", c_float)
         ]
 
-PTPMode = enum(
-    PTPJUMPXYZMode=0,
-    PTPMOVJXYZMode=1,
-    PTPMOVLXYZMode=2,
+class PTPMode(Enum):
+    PTPJUMPXYZMode=0
+    PTPMOVJXYZMode=1
+    PTPMOVLXYZMode=2
     
-    PTPJUMPANGLEMode=3,
-    PTPMOVJANGLEMode=4,
-    PTPMOVLANGLEMode=5,
+    PTPJUMPANGLEMode=3
+    PTPMOVJANGLEMode=4
+    PTPMOVLANGLEMode=5
     
-    PTPMOVJANGLEINCMode=6,
-    PTPMOVLXYZINCMode=7, 
-    PTPMOVJXYZINCMode=8, 
+    PTPMOVJANGLEINCMode=6
+    PTPMOVLXYZINCMode=7
+    PTPMOVJXYZINCMode=8 
     
-    PTPJUMPMOVLXYZMode=9)
+    PTPJUMPMOVLXYZMode=9
 
 InputPin = enum( InputPinNone=0,
     InputPin1=1,
@@ -565,18 +566,18 @@ UART4PeripheralsType = enum(
     )
 ##################  API result   ##################
 
-DobotConnect = enum(
-    DobotConnect_NoError=0,
-    DobotConnect_NotFound=1,
-    DobotConnect_Occupied=2)
+class DobotConnect(Enum):
+    DobotConnect_NoError=0
+    DobotConnect_NotFound=1
+    DobotConnect_Occupied=2
 
-DobotCommunicate = enum(
-    DobotCommunicate_NoError=0,
-    DobotCommunicate_BufferFull=1,
-    DobotCommunicate_Timeout=2,
-    DobotCommunicate_InvalidParams=3,
+class DobotCommunicate(Enum):
+    DobotCommunicate_NoError=0
+    DobotCommunicate_BufferFull=1
+    DobotCommunicate_Timeout=2
+    DobotCommunicate_InvalidParams=3
     DobotCommunicate_InvalidDevice=4
-    )
+
 
 isUsingLinearRail = False
 ##################  API func   ##################
@@ -586,8 +587,8 @@ QuitDobotApiFlag = True
 
 def load():
     if platform.system() == "Windows":
-        print("您用的dll是64位，为了顺利运行，请保证您的python环境也是64位")
-        print("python环境是：",platform.architecture())
+        print("使用しているDLLは64ビットです。正常に動作させるためには、Python環境も64ビットであることを確認してください。")
+        print("python環境です:",platform.architecture())
         return CDLL("./DobotDll.dll",  RTLD_GLOBAL)
     elif platform.system() == "Darwin":
         return CDLL("./libDobotDll.dylib",  RTLD_GLOBAL)

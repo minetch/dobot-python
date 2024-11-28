@@ -1,9 +1,15 @@
 import DobotDllType as dtype
 import time
+import serial
+
+# 動的に変更する
+port = ""
+
+ser = serial.Serial(port,115200)
 
 
 class DobotWrapper:
-    def __init__(self, COM="COM3"):
+    def __init__(self, COM=port):
         self.COM = COM
         self.simulated = False
 

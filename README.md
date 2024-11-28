@@ -1,6 +1,13 @@
-# dobot_python
-3E実験用
+# dobot-python
+
+学生実験DOBOT Magicianのファイルを管理するためのディレクトリです。
+
+ブロックコードでどうしても書きたくなかったのでPythonでどうにか動かせないか調べて挑戦しているところです<-まだやってない
+
+[DOBOT Magician 教育用ロボットアーム](https://techshare.co.jp/product/dobot/magician/)
+
 ## 参考サイト
+
 [[ロボ実験記録] Dobot magicianをpythonで動かす(公式API ver)](https://note.com/kan_hatakeyama/n/nede013f33866)
 
 # DobotDemoForPython64

@@ -7,7 +7,7 @@ print('[HOME]')
 unit1 = {"RED":False, "BLUE":False, "GREEN":False}
 unit2 = {"RED":False, "BLUE":False}
 
-count = {"RED":0,"BLUE":0,"GREEN":0,"BLOCK":0, "TRASH":0}
+count = {"RED":0,"BLUE":0,"GREEN":0,"BLOCK":0,"TRASH":0,"UNIT":0,"EFFECT":0}
 
 ##### VARIABLES #####
 #任意の値に動的に変更してください#
@@ -43,10 +43,10 @@ GreenCount = 0
 
 BlockCount = 0
 TrashCount = 0
+UnitCount = 0
 
 ##### SETTINGS #####
 
-PlacingInterval = 40
 dType.SetEndEffectorParamsEx(api, 59.7, 0, 0, 1)
 
 dType.SetColorSensor(api, 1 ,2, 1)
@@ -66,18 +66,22 @@ dType.SetEndEffectorSuctionCupEx(api, 0, 1)
 ##### SETTINGS #####
 
 def reset():
+  global UnitCount
   for key in unit1:
     unit1[key] = False
   for key in unit2:
     unit2[key] = False
-  print('')
+  UnitCount += 1
+  
 
 def trash(color):
+  global TrashCount
   dType.SetPTPCmdEx(api, 0, Place3_X,  Place3_Y,  Place3_Z, 0, 1)
   print('put {} place3'.format(color))
+  TrashCount += 1
 
 def sortColor():
-  global ColorSensor_X, ColorSensor_Y, ColorSensor_Z, R, G, B, MAX, Place_X, PlacingInterval, Place_Y, Place_Z, RedCount, GreenCount, BlueCount
+  global ColorSensor_X, ColorSensor_Y, ColorSensor_Z, R, G, B, MAX, Place_X, Place_Y, Place_Z, RedCount, GreenCount, BlueCount
   
   dType.SetPTPCmdEx(api, 0, ColorSensor_X,  ColorSensor_Y,  ColorSensor_Z, 0, 1)
   dType.dSleep(100)
@@ -98,7 +102,7 @@ def sortColor():
       unit1['RED'] = True
     elif unit2['RED'] == False:
       print('put red place1')
-      print('place1の数は'.format(sum(value for value in unit1.values())))      
+      print('place1の数は'.format(sum(value for value in unit2.values())))      
       dType.SetPTPCmdEx(api, 0, Place2_X,  Place2_Y,  Place_Z + sum(value for value in unit2.values())*BOX_HEIGHT, 0, 1)
       unit2['RED'] = True
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:
@@ -126,7 +130,7 @@ def sortColor():
       unit1['BLUE'] = True
     elif unit2['BLUE'] == False:
       print('put blue place1')
-      print('place1の数は'.format(sum(value for value in unit1.values())))      
+      print('place1の数は'.format(sum(value for value in unit2.values())))      
       dType.SetPTPCmdEx(api, 0, Place2_X,  Place2_Y,  Place_Z + sum(value for value in unit2.values())*BOX_HEIGHT, 0, 1)
       unit2['BLUE'] = True
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:
@@ -142,7 +146,7 @@ while True:
     dType.SetPTPCmdEx(api, 0, Grab_X,  Grab_Y,  Grab_Z, 0, 1)
     sortColor()
     dType.SetPTPCmdEx(api, 0, Grab_X,  Grab_Y,  ColorSensor_Z, 0, 1)
-    
+    count = {"RED":RedCount,"BLUE":BlueCount,"GREEN":GreenCount,"BLOCK":RedCount+BlueCount+GreenCount,"TRASH":TrashCount,"UNIT":UnitCount,"EFFECT":((UnitCount*5)/BlockCount)*100}
     for key, value in count.items():
       print("{}\t".format(key))
       print("{}\t".format(value))

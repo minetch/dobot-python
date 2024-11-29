@@ -160,9 +160,19 @@ while True:
     dType.SetPTPCmdEx(api, 0, Grab_X,  Grab_Y,  Grab_Z, 0, 1)
     sortColor()
     dType.SetPTPCmdEx(api, 0, Grab_X,  Grab_Y,  ColorSensor_Z, 0, 1)
+    
     BlockCount = 0
     BlockCount = RedCount + BlockCount + GreenCount
-    count = {"RED":RedCount,"BLUE":BlueCount,"GREEN":GreenCount,"BLOCK":BlockCount,"TRASH":TrashCount,"UNIT":UnitCount,"EFFECT":((UnitCount*5)/BlockCount)*100}
+    
+    count = {
+      "RED"     :RedCount,
+      "BLUE"    :BlueCount,
+      "GREEN"   :GreenCount,
+      "BLOCK"   :BlockCount,
+      "TRASH"   :TrashCount,
+      "UNIT"    :UnitCount,
+      "EFFECT"  :((UnitCount*5)/BlockCount)*100
+    }
     for key, value in count.items():
       print("{}\t".format(key))
       print("{}\t".format(value))

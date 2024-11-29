@@ -19,7 +19,7 @@ Grab_Z = 17
 
 ColorSensor_X = 195.3
 ColorSensor_Y = 110.8
-ColorSensor_Z = 40
+ColorSensor_Z = 26
 
 Place1_X = 173
 Place1_Y = -150
@@ -72,7 +72,7 @@ dType.SetPTPJumpParamsEx(api,50,100,1)
 
 current_pose = dType.GetPose(api)
 
-dType.SetPTPCmdEx(api, 2, ColorSensor_X,  ColorSensor_Y,  ColorSensor_Z, current_pose[3], 1)
+dType.SetPTPCmdEx(api, 2, Grab_X,  Grab_Y,  ColorSensor_Z, current_pose[3], 1)
 dType.SetEndEffectorSuctionCupEx(api, 0, 1)
 
 ##### SETTINGS #####

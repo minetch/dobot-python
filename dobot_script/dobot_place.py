@@ -2,14 +2,15 @@ import DobotDllType as dType
 from DobotControl import api
 
 print('[SETTING UP]')
-print('[HOME]')
 
 unit1 = {"RED":False, "BLUE":False, "GREEN":False}
 unit2 = {"RED":False, "BLUE":False}
 
 count = {"RED":0,"BLUE":0,"GREEN":0,"BLOCK":0,"TRASH":0,"UNIT":0,"EFFECT":0}
 
-##### VARIABLES #####
+
+
+##### DOBOT XYZ #####
 #任意の値に動的に変更してください#
 
 Grab_X = 272.1
@@ -30,10 +31,18 @@ Place2_Y = -150
 Place3_X = 173
 Place3_Y = -150
 Place3_Z = -40
+ 
+##### DOBOT XYZ #####
+
+
+
+##### CONSTANT #####
 
 BOX_HEIGHT = 25
- 
-##### VARIABLES #####
+
+##### CONSTANT #####
+
+
 
 ##### COUNTER  #####
 
@@ -44,6 +53,9 @@ GreenCount = 0
 BlockCount = 0
 TrashCount = 0
 UnitCount = 0
+
+##### COUNTER #####
+
 
 ##### SETTINGS #####
 
@@ -64,6 +76,8 @@ dType.SetPTPCmdEx(api, 2, ColorSensor_X,  ColorSensor_Y,  ColorSensor_Z, current
 dType.SetEndEffectorSuctionCupEx(api, 0, 1)
 
 ##### SETTINGS #####
+
+print('[DONE]')
 
 def reset():
   global UnitCount
@@ -146,7 +160,9 @@ while True:
     dType.SetPTPCmdEx(api, 0, Grab_X,  Grab_Y,  Grab_Z, 0, 1)
     sortColor()
     dType.SetPTPCmdEx(api, 0, Grab_X,  Grab_Y,  ColorSensor_Z, 0, 1)
-    count = {"RED":RedCount,"BLUE":BlueCount,"GREEN":GreenCount,"BLOCK":RedCount+BlueCount+GreenCount,"TRASH":TrashCount,"UNIT":UnitCount,"EFFECT":((UnitCount*5)/BlockCount)*100}
+    BlockCount = 0
+    BlockCount = RedCount + BlockCount + GreenCount
+    count = {"RED":RedCount,"BLUE":BlueCount,"GREEN":GreenCount,"BLOCK":BlockCount,"TRASH":TrashCount,"UNIT":UnitCount,"EFFECT":((UnitCount*5)/BlockCount)*100}
     for key, value in count.items():
       print("{}\t".format(key))
       print("{}\t".format(value))

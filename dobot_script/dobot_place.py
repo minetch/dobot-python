@@ -1,18 +1,20 @@
-import DobotDllType as dType
+#DOBOT STUDIOのスクリプト機能で実行する際はDobotのパッケージの宣言をコメントアウトしてください
+import DobotDllType as dType    
 from DobotControl import api
+
 
 print('[SETTING UP]')
 
+
+# DICTIONARY
 unit1 = {"RED":False, "BLUE":False, "GREEN":False}
 unit2 = {"RED":False, "BLUE":False}
-
 count = {"RED":0,"BLUE":0,"GREEN":0,"BLOCK":0,"TRASH":0,"UNIT":0,"EFFECT":0}
 
 
 
-##### DOBOT XYZ #####
+# DOBOT XYZ
 #任意の値に動的に変更してください#
-
 Grab_X = 272.1
 Grab_Y = 138.7
 Grab_Z = 17
@@ -31,21 +33,15 @@ Place2_Y = -150
 Place3_X = 173
 Place3_Y = -150
 Place3_Z = -40
- 
-##### DOBOT XYZ #####
 
 
 
-##### CONSTANT #####
-
+# CONSTANT
 BOX_HEIGHT = 25
 
-##### CONSTANT #####
 
 
-
-##### COUNTER  #####
-
+# COUNTER
 RedCount = 0
 BlueCount = 0
 GreenCount = 0
@@ -54,10 +50,8 @@ BlockCount = 0
 TrashCount = 0
 UnitCount = 0
 
-##### COUNTER #####
 
-
-##### SETTINGS #####
+# SETTINGS
 
 dType.SetEndEffectorParamsEx(api, 59.7, 0, 0, 1)
 
@@ -75,7 +69,6 @@ current_pose = dType.GetPose(api)
 dType.SetPTPCmdEx(api, 2, Grab_X,  Grab_Y,  ColorSensor_Z, current_pose[3], 1)
 dType.SetEndEffectorSuctionCupEx(api, 0, 1)
 
-##### SETTINGS #####
 
 print('[DONE]')
 
@@ -86,6 +79,11 @@ def reset():
   for key in unit2:
     unit2[key] = False
   UnitCount += 1
+  print('/t/t#####################')
+  print('/t/t#/t/t/t#')
+  print('/t/t#/tTAKE BLOCKS OFF/t#')
+  print('/t/t#/t/t/t#')
+  print('/t/t#####################')
   
 
 def trash(color):
@@ -95,7 +93,7 @@ def trash(color):
   TrashCount += 1
 
 def sortColor():
-  global ColorSensor_X, ColorSensor_Y, ColorSensor_Z, R, G, B, MAX, Place_X, Place_Y, Place_Z, RedCount, GreenCount, BlueCount
+  global R, G, B, MAX, RedCount, GreenCount, BlueCount
   
   dType.SetPTPCmdEx(api, 0, ColorSensor_X,  ColorSensor_Y,  ColorSensor_Z, 0, 1)
   dType.dSleep(100)

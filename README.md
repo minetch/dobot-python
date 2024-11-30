@@ -12,7 +12,7 @@ dobot studioの環境依存になるためscriptを実行するにあたって�
 
 [DOBOT Magician 教育用ロボットアーム](https://techshare.co.jp/product/dobot/magician/)
 
-## - 参考サイト
+## 今回使わなかったけど参考にさせていただいたサイト
 
 [[ロボ実験記録] Dobot magicianをpythonで動かす(公式API ver)](https://note.com/kan_hatakeyama/n/nede013f33866)
 

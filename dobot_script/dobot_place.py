@@ -14,7 +14,7 @@ count = {"RED":0,"BLUE":0,"GREEN":0,"BLOCK":0,"TRASH":0,"UNIT":0,"EFFECT":0}
 
 
 # DOBOT XYZ
-#任意の値に動的に変更してください#
+# 任意の値に動的に変更してください
 Grab_X = 272.1
 Grab_Y = 138.7
 Grab_Z = 17
@@ -41,7 +41,7 @@ BOX_HEIGHT = 25
 
 
 
-# COUNTER
+# VARIABLES
 RedCount = 0
 BlueCount = 0
 GreenCount = 0
@@ -51,8 +51,7 @@ TrashCount = 0
 UnitCount = 0
 
 
-# SETTINGS
-
+# SETUP
 dType.SetEndEffectorParamsEx(api, 59.7, 0, 0, 1)
 
 dType.SetColorSensor(api, 1 ,2, 1)
@@ -89,7 +88,7 @@ def reset():
 def trash(color):
   global TrashCount
   dType.SetPTPCmdEx(api, 0, Place3_X,  Place3_Y,  Place3_Z, 0, 1)
-  print('put {} place3'.format(color))
+  print('put {} trash(place3)'.format(color))
   TrashCount += 1
 
 def sortColor():
@@ -171,6 +170,7 @@ while True:
       "UNIT"    :UnitCount,
       "EFFECT"  :((UnitCount*5)/BlockCount)*100
     }
+    
     for key, value in count.items():
       print("{}\t".format(key))
       print("{}\t".format(value))

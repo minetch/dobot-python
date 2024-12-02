@@ -6,7 +6,7 @@ from DobotControl import api
 print('[SETTING UP]')
 
 
-# DICTIONARY
+# DICTIONARIES
 unit1 = {"RED":False, "BLUE":False, "GREEN":False}
 unit2 = {"RED":False, "BLUE":False}
 count = {"RED":0,"BLUE":0,"GREEN":0,"BLOCK":0,"TRASH":0,"UNIT":0,"EFFECT":0}
@@ -108,12 +108,12 @@ def sortColor():
     RedCount += 1
     if unit1['RED'] == False:
       print('put red place1')
-      print('place1の数は'.format(sum(value for value in unit1.values())))
+      print('place1の数は{}'.format(sum(value for value in unit1.values())))
       dType.SetPTPCmdEx(api, 0, Place1_X,  Place1_Y,  Place_Z + sum(value for value in unit1.values())*BOX_HEIGHT, 0, 1)
       unit1['RED'] = True
     elif unit2['RED'] == False:
       print('put red place1')
-      print('place1の数は'.format(sum(value for value in unit2.values())))      
+      print('place1の数は{}'.format(sum(value for value in unit2.values())))      
       dType.SetPTPCmdEx(api, 0, Place2_X,  Place2_Y,  Place_Z + sum(value for value in unit2.values())*BOX_HEIGHT, 0, 1)
       unit2['RED'] = True
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:
@@ -125,7 +125,7 @@ def sortColor():
     GreenCount += 1
     if unit1['GREEN'] == False:
       print('put red place1')
-      print('place1の数は'.format(sum(value for value in unit1.values())))
+      print('place1の数は{}'.format(sum(value for value in unit1.values())))
       dType.SetPTPCmdEx(api, 0, Place1_X,  Place1_Y,  Place_Z + sum(value for value in unit1.values())*BOX_HEIGHT, 0, 1)
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:
         reset()
@@ -136,12 +136,12 @@ def sortColor():
     BlueCount += 1
     if unit1['BLUE'] == False:
       print('put blue place1')
-      print('place1の数は'.format(sum(value for value in unit1.values())))
+      print('place1の数は{}'.format(sum(value for value in unit1.values())))
       dType.SetPTPCmdEx(api, 0, Place1_X,  Place1_Y,  Place_Z + sum(value for value in unit1.values())*BOX_HEIGHT, 0, 1)
       unit1['BLUE'] = True
     elif unit2['BLUE'] == False:
       print('put blue place1')
-      print('place1の数は'.format(sum(value for value in unit2.values())))      
+      print('place1の数は{}'.format(sum(value for value in unit2.values())))      
       dType.SetPTPCmdEx(api, 0, Place2_X,  Place2_Y,  Place_Z + sum(value for value in unit2.values())*BOX_HEIGHT, 0, 1)
       unit2['BLUE'] = True
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:

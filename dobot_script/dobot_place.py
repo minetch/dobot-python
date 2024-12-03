@@ -1,4 +1,3 @@
-#DOBOT STUDIOのスクリプト機能で実行する際はDobotのパッケージの宣言をコメントアウトしてください
 import DobotDllType as dType    
 from DobotControl import api
 
@@ -17,22 +16,22 @@ count = {"RED":0,"BLUE":0,"GREEN":0,"BLOCK":0,"TRASH":0,"UNIT":0,"EFFECT":0}
 # 任意の値に動的に変更してください
 Grab_X = 272.1
 Grab_Y = 138.7
-Grab_Z = 17
+Grab_Z = 15
 
 ColorSensor_X = 195.3
 ColorSensor_Y = 110.8
 ColorSensor_Z = 26
 
-Place1_X = 173
+Place1_X = 175
 Place1_Y = -150
 Place_Z = -40
 
-Place2_X = 173
+Place2_X = 125
 Place2_Y = -150
 
-Place3_X = 173
-Place3_Y = -150
-Place3_Z = -40
+Place3_X = 15
+Place3_Y = -257
+Place3_Z = 33
 
 
 
@@ -127,6 +126,7 @@ def sortColor():
       print('put red place1')
       print('place1の数は{}'.format(sum(value for value in unit1.values())))
       dType.SetPTPCmdEx(api, 0, Place1_X,  Place1_Y,  Place_Z + sum(value for value in unit1.values())*BOX_HEIGHT, 0, 1)
+      unit1['GREEN'] = True
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:
         reset()
     else:
@@ -159,7 +159,7 @@ while True:
     dType.SetPTPCmdEx(api, 0, Grab_X,  Grab_Y,  ColorSensor_Z, 0, 1)
     
     BlockCount = 0
-    BlockCount = RedCount + BlockCount + GreenCount
+    BlockCount = RedCount + BlueCount + GreenCount
     
     count = {
       "RED"     :RedCount,
@@ -172,5 +172,4 @@ while True:
     }
     
     for key, value in count.items():
-      print("{}\t".format(key))
-      print("{}\t".format(value))
+      print("\t{}\t\t{}".format(key, value))

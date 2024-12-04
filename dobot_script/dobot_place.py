@@ -110,6 +110,7 @@ def sortColor():
       print('place1の数は{}'.format(sum(value for value in unit1.values())))
       dType.SetPTPCmdEx(api, 0, Place1_X,  Place1_Y,  Place_Z + sum(value for value in unit1.values())*BOX_HEIGHT, 0, 1)
       unit1['RED'] = True
+      return None
     elif unit2['RED'] == False:
       print('put red place1')
       print('place1の数は{}'.format(sum(value for value in unit2.values())))      
@@ -117,8 +118,12 @@ def sortColor():
       unit2['RED'] = True
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:
         reset()
+        return None
+      else :
+        return None
     else:
       trash('red')
+      return None
   elif MAX == G:
     print('Green')
     GreenCount += 1
@@ -129,8 +134,12 @@ def sortColor():
       unit1['GREEN'] = True
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:
         reset()
+        return None
+      else:
+        return None  
     else:
       trash('green')
+      return None
   else:
     print('Blue')
     BlueCount += 1
@@ -139,6 +148,7 @@ def sortColor():
       print('place1の数は{}'.format(sum(value for value in unit1.values())))
       dType.SetPTPCmdEx(api, 0, Place1_X,  Place1_Y,  Place_Z + sum(value for value in unit1.values())*BOX_HEIGHT, 0, 1)
       unit1['BLUE'] = True
+      return None
     elif unit2['BLUE'] == False:
       print('put blue place1')
       print('place1の数は{}'.format(sum(value for value in unit2.values())))      
@@ -146,10 +156,14 @@ def sortColor():
       unit2['BLUE'] = True
       if (sum(value for value in unit1.values())+sum(value for value in unit2.values())) == 5:
         reset()
+        return None
+      else:
+        return None
     else:
       trash('blue')
   dType.SetEndEffectorSuctionCupEx(api, 0, 1)
   dType.dSleep(0)
+  return None
 
 while True:
   if (dType.GetInfraredSensor(api, 1)[0]) == 1:
